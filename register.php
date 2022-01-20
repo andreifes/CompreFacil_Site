@@ -19,7 +19,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['telefone'])
 	$newTelefone = trim($_POST['telefone']);
 	$newSenha = trim($_POST['senha']);
 		
-	$usuario_existe = pg_query($con, "SELECT email FROM usuarios WHERE email='$newEmail'");
+	$usuario_existe = pg_query($con, "SELECT email FROM usuario WHERE email='$newEmail'");
 	// check for empty result
 	if (pg_num_rows($usuario_existe) > 0) {
 		$response["success"] = 0;
@@ -27,7 +27,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['telefone'])
 	}
 	else {
 		// mysql inserting a new row
-		$result = pg_query($con, "INSERT INTO usuarios(nome, email, telefone, senha) VALUES('$newNome', '$newEmail', '$newTelefone', '$newSenha')");
+		$result = pg_query($con, "INSERT INTO usuario(nome, email, telefone, senha) VALUES('$newNome', '$newEmail', '$newTelefone', '$newSenha')");
 	 
 		if ($result) {
 			$response["success"] = 1;

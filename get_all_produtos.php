@@ -54,6 +54,7 @@ if (isset($_GET["id_mercado"])) {
             // Converte a resposta para o formato JSON.
             
         }
+	}
 }else {
     // Se a requisicao foi feita incorretamente, ou seja, os parametros 
 	// nao foram enviados corretamente para o servidor, o cliente 

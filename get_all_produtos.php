@@ -22,7 +22,7 @@ if (isset($_GET["id_mercado"])) {
 				$row1 = pg_fetch_array($result1);
 				$produto["nome"] = $row1["nome"];
 				$produto["img"] = $row1["img"];
-				$id_categoria = $row2["id_categoria"];
+				$id_categoria = $row1["id_categoria"];
 				$result2 = pg_query($con, "SELECT *FROM categoria WHERE id = '$id_categoria'");
 				$row2 = pg_fetch_array($result2);
 				$produto["id_categoria"] = $id_categoria;

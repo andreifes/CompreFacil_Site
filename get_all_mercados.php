@@ -15,9 +15,9 @@ if (pg_num_rows($result) > 0) {
         $mercado["id"] = $row["id"];
         $mercado["nome"] = $row["nome"];
         $mercado["img"] = $row["img"];
-		$id_endereco = $row["id_endereco"]
+		$id_endereco = $row["id_endereco"];
 		$result1 = pg_query($con, "SELECT * FROM endereco WHERE endereco.id = '$id_endereco'");
-		$row1 = pg_fetch_array($result1)
+		$row1 = pg_fetch_array($result1);
         $mercado["cidade"] = $row1["cidade"];
 		$mercado["bairro"] = $row1["bairro"];
 

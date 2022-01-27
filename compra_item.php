@@ -6,7 +6,7 @@ $con = pg_connect(getenv("DATABASE_URL"));
 $response = array();
  
 // check for required fields
-if (isset($_POST['id_compra'])) && isset($_POST['id_item']){
+if (isset($_POST['id_compra']) && isset($_POST['id_item'])){
  
 	$id_compra = trim($_POST['id_compra']);
     $id_item = trim($_POST['id_item']);

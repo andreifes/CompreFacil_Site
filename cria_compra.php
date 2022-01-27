@@ -13,6 +13,8 @@ if (isset($_POST['email_usuario'])) {
 		$result = pg_query($con, "INSERT INTO compra(email_usuario) VALUES('$usuarioEmail') RETURNING id");
 	 
 		if ($result) {
+			$row = pg_fetch_array($result);
+			$response["id"] = $row["id"];
 			$response["success"] = 1;
 		}
 		else {

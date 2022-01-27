@@ -27,7 +27,8 @@ if (isset($_GET["id_mercado"])) {
 				$row2 = pg_fetch_array($result2);
 				$produto["id_categoria"] = $id_categoria;
 				$produto["nome_categoria"] = $row2["nome"];
-				$produto["id"] = $row["id_produto"];
+				$produto["id_produto"] = $row["id_produto"];
+				$produto["id_item"] = $row["id"];
 				
 				array_push($response["produtos"], $produto);
 			}

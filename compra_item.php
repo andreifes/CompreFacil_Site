@@ -1,16 +1,18 @@
 <?php
+
 $con = pg_connect(getenv("DATABASE_URL"));
  
 // array for JSON response
 $response = array();
  
 // check for required fields
-if (isset($_POST['email_usuario'])) {
+if (isset($_POST['id_compra'])) && isset($_POST['id_item']){
  
-	$usuarioEmail = trim($_POST['email_usuario']);
+	$id_compra = trim($_POST['id_compra']);
+    $id_item = trim($_POST['id_item']);
 	
 		// mysql inserting a new row
-		$result = pg_query($con, "INSERT INTO compra(email_usuario) VALUES('$usuarioEmail') RETURNING id");
+		$result = pg_query($con, "INSERT INTO compra_item(id_compra, id_item) VALUES('$id_compra', '$id_item')");
 	 
 		if ($result) {
 			$response["success"] = 1;

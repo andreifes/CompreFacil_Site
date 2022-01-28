@@ -12,7 +12,7 @@ if (isset($_GET["email_usuario"])) {
 	$response["compras"] = array();
 	
 	if (!empty($result)) {
-        if (pg_num_rows($result) > 0) {
+        if (pg_num_rows($result) > 0)) {
 			while($row = pg_fetch_array($result)){
                 $compra = array();
                 $compra["data_hora"] = $row["data_hora"];

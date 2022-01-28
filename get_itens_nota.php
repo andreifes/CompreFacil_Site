@@ -25,6 +25,8 @@ if (isset($_GET["id"])) {
         if (pg_num_rows($result) > 0) {
 			while($row = pg_fetch_array($result)){
 
+                echo var_dump($row);
+
 				$item = array();
                 array_push($item["nome"], $row["nome"]);
                 array_push($item["preco"], $row["preco"]);

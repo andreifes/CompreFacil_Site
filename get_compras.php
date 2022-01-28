@@ -3,16 +3,16 @@ $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
 
-if (isset($_GET["email_usuario"])) {
+if (isset($_GET["email"])) {
 	
 	// Aqui sao obtidos os parametros
-    $email = $_GET['email_usuario'];
+    $email = $_GET['email'];
  
 	$result = pg_query($con, "SELECT * FROM compra WHERE email_usuario = '$email'");
 	$response["compras"] = array();
 	
 	if (!empty($result)) {
-        if (pg_num_rows($result) > 0)) {
+        if (pg_num_rows($result) > 0) {
 			while($row = pg_fetch_array($result)){
                 $compra = array();
                 $compra["data_hora"] = $row["data_hora"];

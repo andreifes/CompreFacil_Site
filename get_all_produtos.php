@@ -40,7 +40,7 @@ if (isset($_GET["id_mercado"])) {
             $response["success"] = 1;
 			
 			// Fecha a conexao com o BD
-			pg_close($con);
+			//pg_close($con);
  
             // Converte a resposta para o formato JSON.
             echo json_encode($response);

@@ -34,11 +34,11 @@ if (isset($_GET["email_usuario"])) {
                 $id_endereco = $row3["id_endereco"];
 
                 $result4 = pg_query($con, "SELECT *FROM endereco WHERE id = '$id_endereco'");
-                $row4 = pg_fetch_array($result3);
+                $row4 = pg_fetch_array($result4);
                 $compra["cidade_mercado"] = $row4["cidade"];
 
                 $result5 = pg_query($con, "SELECT *FROM produto WHERE id = '$id_produto'");
-                $row5 = pg_fetch_array($result3);
+                $row5 = pg_fetch_array($result5);
                 $compra["img_produto"] = $row5["img"];
 
                 $compra["id_compra"] = $id_compra;

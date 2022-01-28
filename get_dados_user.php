@@ -28,7 +28,7 @@ if (isset($_GET["email"])) {
             $response["success"] = 1;
 			
 			// Fecha a conexao com o BD
-			pg_close($con);
+			//pg_close($con);
  
             // Converte a resposta para o formato JSON.
             echo json_encode($response);

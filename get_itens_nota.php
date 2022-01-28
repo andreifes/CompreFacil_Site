@@ -8,28 +8,28 @@ if (isset($_GET["id"])) {
 	// Aqui sao obtidos os parametros
     $id_compra = $_GET['id'];
  
-	$result = pg_query($con, "SELECT * FROM compra WHERE id = '$id_compra'");
-	$response["compras"] = array();
+	//$result = pg_query($con, "SELECT * FROM compra WHERE id = '$id_compra'");
+    $query = "
+        SELECT produto.nome, item.preco
+        FROM compra_item 
+        WHERE id_compra = '$id_compra'
+        INNER JOIN item ON id_item = item.id
+        INNER JOIN produto ON item.id_produto = produto.id
+    ";
+
+    $result = pg_query($con, $query);
+
+	$response["itensCompra"] = array();
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
 			while($row = pg_fetch_array($result)){
 
-                $result10 = pg_query($con, "SELECT *FROM compra_item WHERE id_compra = '$id_compra'");
-				$row10 = pg_fetch_array($result10);
 				$item = array();
-				$id_item = $row10["id_item"];
-                
-                $result11 = pg_query($con, "SELECT *FROM item WHERE id = '$id_item'");
-				$row11 = pg_fetch_array($result11);
-                $item["preco"] = $row11["preco"];
-                $id_produto = $row11["id_produto"];
+				$item["nome"] = $row["nome"];
+                $item["preco"] = $row["preco"];
 
-                $result12 = pg_query($con, "SELECT *FROM produto WHERE id = '$id_produto'");
-				$row12 = pg_fetch_array($result12);
-                $item["nome_produto"] = $row12["nome"];
-
-				array_push($response["compras"], $item);
+				array_push($response["itensCompra"], $item);
 			}
  
             

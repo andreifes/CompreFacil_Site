@@ -3,7 +3,7 @@ $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
 
-if (isset($_GET["id_compra"])) {
+if (isset($_GET["compra.id_compra"])) {
 	
 	// Aqui sao obtidos os parametros
     $id_compra = $_GET['id_compra'];

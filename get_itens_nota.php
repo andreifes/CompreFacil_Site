@@ -23,11 +23,11 @@ if (isset($_GET["id"])) {
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
-			while($row = pg_fetch_array($result)){
+			while($row = pg_fetch_array($result)) {
 
 				$item = array();
-                $item["nome"] = $row["nome"]);
-                $item["preco"] = $row["preco"]);
+                $item["nome"] = $row["nome"];
+                $item["preco"] = $row["preco"];
 
 				array_push($response["itensCompra"], $item);
 			}

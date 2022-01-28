@@ -3,10 +3,10 @@ $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
 
-if (isset($_GET["email"])) {
+if (isset($_GET["email_usuario"])) {
 	
 	// Aqui sao obtidos os parametros
-    $email = $_GET['email'];
+    $email = $_GET['email_usuario'];
  
 	$result = pg_query($con, "SELECT * FROM compra WHERE email_usuario = '$email'");
 	$response["compras"] = array();

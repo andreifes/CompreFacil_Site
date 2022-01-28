@@ -16,7 +16,7 @@ if (isset($_GET["email_usuario"])) {
 			while($row = pg_fetch_array($result)){
                 $compra = array();
                 $compra["data_hora"] = $row["data_hora"];
-                $compra["id_compra"] = $row["id"];
+                $id_compra = $row["id"];
 
                 $result1 = pg_query($con, "SELECT * FROM compra_item WHERE id_compra = '$id_compra'");
                 $row1 = pg_fetch_array($result1);

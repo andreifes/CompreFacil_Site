@@ -49,8 +49,9 @@ if (isset($_GET["email"])) {
     $response["success"] = 0;
     $response["message"] = "Campo requerido não preenchido";
 }
+
 // Fecha a conexao com o BD
-pg_close($con);
+//pg_close($con);
 echo json_encode($response);
 
 ?>

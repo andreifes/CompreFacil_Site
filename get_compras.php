@@ -39,7 +39,7 @@ if (isset($_GET["email_usuario"])) {
 
                 $result5 = pg_query($con, "SELECT *FROM produto WHERE id = '$id_produto'");
                 $row5 = pg_fetch_array($result3);
-                $compra["img_produto"] = $row["img"];
+                $compra["img_produto"] = $row5["img"];
 
                 $compra["id_compra"] = $id_compra;
                 

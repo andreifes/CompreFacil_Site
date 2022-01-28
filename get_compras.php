@@ -8,7 +8,7 @@ if (isset($_GET["email_usuario"])) {
 	// Aqui sao obtidos os parametros
     $email = $_GET['email_usuario'];
  
-	$result = pg_query($con, "SELECT * FROM compra WHERE email = '$email'");
+	$result = pg_query($con, "SELECT * FROM compra WHERE email_usuario = '$email'");
 	$response["compras"] = array();
 	
 	if (!empty($result)) {

@@ -3,12 +3,12 @@ $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
 
-if (isset($_GET["compra.id_compra"])) {
+if (isset($_GET["id"])) {
 	
 	// Aqui sao obtidos os parametros
-    $id_compra = $_GET['id_compra'];
+    $id_compra = $_GET['id'];
  
-	$result = pg_query($con, "SELECT * FROM compra WHERE id_compra = '$id_compra'");
+	$result = pg_query($con, "SELECT * FROM compra WHERE id = '$id_compra'");
 	$response["compras"] = array();
 	
 	if (!empty($result)) {

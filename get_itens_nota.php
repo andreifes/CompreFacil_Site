@@ -26,13 +26,11 @@ if (isset($_GET["id"])) {
 			while($row = pg_fetch_array($result)){
 
 				$item = array();
-				$item["nome"] = $row["nome"];
-                $item["preco"] = $row["preco"];
+                array_push($item["nome"], $row["nome"]);
+                array_push($item["preco"], $row["preco"]);
 
 				array_push($response["itensCompra"], $item);
 			}
- 
-            
             
             // Caso o produto exista no BD, o cliente 
 			// recebe a chave "success" com valor 1.

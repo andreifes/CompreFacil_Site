@@ -13,14 +13,15 @@ if (isset($_GET["email"])) {
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
-			$row = pg_fetch_array($result)
+			$row = pg_fetch_array($result);
+			
 			$usuario = array();
 			$usuario["nome"] = $row["nome"];
 			$usuario["telefone"] = $row["telefone"];
 			
 			array_push($response["usuario"], $usuario);
             
-            
+           
             // Caso o produto exista no BD, o cliente 
 			// recebe a chave "success" com valor 1.
             $response["success"] = 1;

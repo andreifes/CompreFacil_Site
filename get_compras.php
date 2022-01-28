@@ -37,7 +37,11 @@ if (isset($_GET["email_usuario"])) {
                 $compra["cidade_mercado"] = $row4["cidade"];
                 $compra["bairro_mercado"] = $row4["bairro"];
 
+                $result5 = pg_query($con, "SELECT SUM(preco) as preco FROM compra_item INNER JOIN item ON compra_item.id_item = item.id WHERE id_compra = $id_compra");
+                $row5 = pg_fetch_array($result5);
+
                 $compra["id_compra"] = $id_compra;
+                $compra["preco_total"] = $row5["preco"];
                 
                 array_push($response["compras"], $compra);
             }

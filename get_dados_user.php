@@ -1,4 +1,5 @@
 <?php
+
 $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
@@ -19,7 +20,7 @@ if (isset($_GET["email"])) {
 			$usuario["nome"] = $row["nome"];
 			$usuario["telefone"] = $row["telefone"];
 			
-			array_push($response["usuario"], $usuario);
+			$response["usuario"] = $usuario;
             
            
             // Caso o produto exista no BD, o cliente 
@@ -31,20 +32,16 @@ if (isset($_GET["email"])) {
  
             // Converte a resposta para o formato JSON.
             echo json_encode($response);
+			
         } else {
             // Caso o produto nao exista no BD, o cliente 
 			// recebe a chave "success" com valor 0. A chave "message" indica o 
 			// motivo da falha.
             $response["success"] = 0;
-            $response["message"] = "Produto não encontrado";
-			
-			
- 
-            // Converte a resposta para o formato JSON.
-            
+            $response["message"] = "Produto não encontrado";            
         }
 	}
-}else {
+} else {
     // Se a requisicao foi feita incorretamente, ou seja, os parametros 
 	// nao foram enviados corretamente para o servidor, o cliente 
 	// recebe a chave "success" com valor 0. A chave "message" indica o 
@@ -55,4 +52,5 @@ if (isset($_GET["email"])) {
 // Fecha a conexao com o BD
 pg_close($con);
 echo json_encode($response);
+
 ?>

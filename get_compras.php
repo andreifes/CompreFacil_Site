@@ -3,27 +3,28 @@ $response = array();
 
 $con = pg_connect(getenv("DATABASE_URL"));
 
-if (isset($_GET["id"])) {
+if (isset($_GET["email_usuario"])) {
 	
 	// Aqui sao obtidos os parametros
-    $id_compra = $_GET['id'];
+    $email = $_GET['email_usuario'];
  
-	$result = pg_query($con, "SELECT * FROM compra WHERE id = '$id_compra'");
+	$result = pg_query($con, "SELECT * FROM compra WHERE email_usuario = '$email'");
 	$response["compras"] = array();
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
 			while($row = pg_fetch_array($result)){
-				$compra = array();
-				$compra["data_hora"] = $row["data_hora"];
+                $compra = array();
+                $compra["data_hora"] = $row["data_hora"];
+                $compra["id_compra"] = $row["id"];
 
-				$result1 = pg_query($con, "SELECT *FROM compra_item WHERE id_compra = '$id_compra'");
-				$row1 = pg_fetch_array($result1);
-				$id_item = $row1["id_item"];
+                $result1 = pg_query($con, "SELECT *FROM compra_item WHERE id_compra = '$id_compra'");
+                $row1 = pg_fetch_array($result1);
+                $id_item = $row1["id_item"];
 
-				$result2 = pg_query($con, "SELECT *FROM item WHERE id = '$id_item'");
-				$row2 = pg_fetch_array($result2);
-				$compra["preco"] = $row2["preco"];
+                $result2 = pg_query($con, "SELECT *FROM item WHERE id = '$id_item'");
+                $row2 = pg_fetch_array($result2);
+                $compra["preco"] = $row2["preco"];
                 $id_mercado = $row2["id_mercado"];
                 $id_produto = $row2["id_produto"];
 
@@ -41,9 +42,10 @@ if (isset($_GET["id"])) {
                 $compra["img_produto"] = $row["img"];
 
                 $compra["id_compra"] = $id_compra;
-				
-				array_push($response["compras"], $compra);
-			}
+                
+                array_push($response["compras"], $compra);
+            }
+        
  
             
             

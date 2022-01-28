@@ -13,12 +13,12 @@ if (isset($_GET["email"])) {
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
-				$usuario = array();
-				$usuario["nome"] = $row["nome"];
-				$usuario["telefone"] = $row["telefone"];
-				
-				array_push($response["usuario"], $usuario);
- 
+			$row = pg_fetch_array($result)
+			$usuario = array();
+			$usuario["nome"] = $row["nome"];
+			$usuario["telefone"] = $row["telefone"];
+			
+			array_push($response["usuario"], $usuario);
             
             
             // Caso o produto exista no BD, o cliente 

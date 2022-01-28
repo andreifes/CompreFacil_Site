@@ -24,16 +24,19 @@ if (isset($_GET["id"])) {
 	
 	if (!empty($result)) {
         if (pg_num_rows($result) > 0) {
+            $img_mercado = null;
 			while($row = pg_fetch_array($result)) {
 
 				$item = array();
                 $item["nome"] = $row["nome"];
                 $item["preco"] = $row["preco"];
 
+                $img_mercado = $row["img_mercado"];
+
 				array_push($response["itensCompra"], $item);
 			}
 
-            $response["img_mercado"] = $row["img_mercado"];
+            $response["img_mercado"] = $img_mercado;
  
             // Caso o produto exista no BD, o cliente 
 			// recebe a chave "success" com valor 1.

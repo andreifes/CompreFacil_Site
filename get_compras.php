@@ -18,7 +18,7 @@ if (isset($_GET["email_usuario"])) {
                 $compra["data_hora"] = $row["data_hora"];
                 $id_compra = $row["id"];
 
-                $result1 = pg_query($con, "SELECT * FROM compra_item WHERE id_compra = '$id_compra'");
+                $result1 = pg_query($con, "SELECT * FROM compra_item WHERE id_compra = '$id_compra' GROUP BY id_compra");
                 $row1 = pg_fetch_array($result1);
                 $id_item = $row1["id_item"];
 
@@ -31,15 +31,12 @@ if (isset($_GET["email_usuario"])) {
                 $result3 = pg_query($con, "SELECT * FROM mercado WHERE id = '$id_mercado'");
                 $row3 = pg_fetch_array($result3);
                 $compra["nome_mercado"] = $row3["nome"];
+                $compra["img_produto"] = $row3["img"];
                 $id_endereco = $row3["id_endereco"];
 
                 $result4 = pg_query($con, "SELECT * FROM endereco WHERE id = '$id_endereco'");
                 $row4 = pg_fetch_array($result4);
                 $compra["cidade_mercado"] = $row4["cidade"];
-
-                $result5 = pg_query($con, "SELECT * FROM produto WHERE id = '$id_produto'");
-                $row5 = pg_fetch_array($result5);
-                $compra["img_produto"] = $row5["img"];
 
                 $compra["id_compra"] = $id_compra;
                 

@@ -12,9 +12,9 @@ if (isset($_GET["id"])) {
     $query = "
         SELECT produto.nome, item.preco
         FROM compra_item 
-        WHERE id_compra = '$id_compra'
         INNER JOIN item ON id_item = item.id
         INNER JOIN produto ON item.id_produto = produto.id
+        WHERE id_compra = $id_compra
     ";
 
     $result = pg_query($con, $query);
@@ -25,11 +25,9 @@ if (isset($_GET["id"])) {
         if (pg_num_rows($result) > 0) {
 			while($row = pg_fetch_array($result)){
 
-                echo var_dump($row);
-
 				$item = array();
-                array_push($item["nome"], $row["nome"]);
-                array_push($item["preco"], $row["preco"]);
+                $item["nome"] = $row["nome"]);
+                $item["preco"] = $row["preco"]);
 
 				array_push($response["itensCompra"], $item);
 			}

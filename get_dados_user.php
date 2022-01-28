@@ -51,7 +51,7 @@ if (isset($_GET["email"])) {
 }
 
 // Fecha a conexao com o BD
-//pg_close($con);
+pg_close($con);
 echo json_encode($response);
 
 ?>

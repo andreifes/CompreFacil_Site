@@ -10,10 +10,11 @@ if (isset($_GET["id"])) {
  
 	//$result = pg_query($con, "SELECT * FROM compra WHERE id = '$id_compra'");
     $query = "
-        SELECT produto.nome, item.preco
+        SELECT produto.nome, item.preco, mercado.img as img_mercado
         FROM compra_item 
         INNER JOIN item ON id_item = item.id
         INNER JOIN produto ON item.id_produto = produto.id
+        INNER JOIN mercado ON item.id_mercado = mercado.id
         WHERE id_compra = $id_compra
     ";
 
@@ -31,7 +32,9 @@ if (isset($_GET["id"])) {
 
 				array_push($response["itensCompra"], $item);
 			}
-            
+
+            $response["img_mercado"] = $row["img_mercado"];
+ 
             // Caso o produto exista no BD, o cliente 
 			// recebe a chave "success" com valor 1.
             $response["success"] = 1;
